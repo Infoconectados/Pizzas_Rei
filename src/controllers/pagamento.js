@@ -1,19 +1,23 @@
 const db = [];
 const cliente_controller = require("./cliente.js");
 const vendedor_controller = require("./vendedor.js");
+const status_controller = require("./status.js");
 let nextId = 1;
 
 const model = (pagamento, id_pagamento = nextId++) => {
   if (
     pagamento.id_cliente != undefined &&
     pagamento.id_vendedor != undefined &&
+    pagamento.id_status != undefined &&
     vendedor_controller.show(pagamento.id_vendedor) &&
-    cliente_controller.show(pagamento.id_cliente)
+    cliente_controller.show(pagamento.id_cliente) &&
+    status_controller.show(pagamento.id_status)
   ) {
     return {
       id_pagamento,
       id_vendedor: pagamento.id_vendedor,
       id_cliente: pagamento.id_cliente,
+      id_status: pagamento.id_status,
     };
   }
 };

@@ -1,19 +1,31 @@
 const db = [];
 const cliente_controller = require("./cliente.js");
 const vendedor_controller = require("./vendedor.js");
+const pizza_controller = require("./pizza.js");
+const entrega_controller = require("./entrega.js");
+const pagamento_controller = require("./pagamento.js");
 let nextId = 1;
 
 const model = (pedido, id_pedido = nextId++) => {
   if (
     pedido.id_cliente != undefined &&
     pedido.id_vendedor != undefined &&
+    pedido.id_pizza != undefined &&
+    pedido.id_entrega != undefined &&
+    pedido.id_pagamento != undefined &&
     cliente_controller.show(pedido.id_cliente) &&
-    vendedor_controller.show(pedido.id_vendedor)
+    vendedor_controller.show(pedido.id_vendedor) &&
+    pizza_controller.show(pedido.id_pizza) &&
+    entrega_controller.show(pedido.id_entrega) &&
+    pagamento_controller.show(pedido.id_pagamento)
   ) {
     return {
       id_pedido,
       id_cliente: pedido.id_cliente,
       id_vendedor: pedido.id_vendedor,
+      id_pizza: pedido.id_pizza,
+      id_entrega: pedido.id_entrega,
+      id_pagamento: pedido.id_pagamento,
       data: pedido.data,
     };
   }

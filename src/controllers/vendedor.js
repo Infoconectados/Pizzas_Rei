@@ -4,14 +4,7 @@ const entrega_controller = require("./entrega.js");
 let nextId = 1;
 
 const model = (vendedor, id_vendedor = nextId++) => {
-  if (
-    vendedor.nome != undefined &&
-    vendedor.nome != "" &&
-    vendedor.id_cliente != undefined &&
-    vendedor.id_entrega != undefined &&
-    cliente_controller.show(vendedor.id_cliente) &&
-    entrega_controller.show(vendedor.id_entrega)
-  ) {
+  if (vendedor.nome != undefined && vendedor.nome != "") {
     return {
       id_vendedor,
       id_cliente: vendedor.id_cliente,
