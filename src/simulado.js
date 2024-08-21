@@ -1,26 +1,26 @@
-app.post("/endereco", (req, res) => {
-  const endereco = req.body;
-  const code = endereco_controller.store(endereco);
+app.post("/pedidos", (req, res) => {
+  const pedidos = req.body;
+  const code = pedidos_controller.store(pedidos);
   res.status(code).json();
 });
 
-app.get("/endereco", (req, res) => {
-  const endereco = endereco_controller.index();
-  res.json(endereco);
+app.get("/pedidos", (req, res) => {
+  const pedidos = pedidos_controller.index();
+  res.json(pedidos);
 });
 
-app.get("/endereco/:id", (req, res) => {
-  const endereco = endereco_controller.show(req.params.id);
-  res.json(endereco);
+app.get("/pedidos/:id", (req, res) => {
+  const pedidos = pedidos_controller.show(req.params.id);
+  res.json(pedidos);
 });
 
-app.put("/endereco/:id", (req, res) => {
-  const endereco = req.body;
-  const code = endereco_controller.update(req.params.id, endereco);
+app.put("/pedidos/:id", (req, res) => {
+  const pedidos = req.body;
+  const code = pedidos_controller.update(req.params.id, pedidos);
   res.status(code).json();
 });
 
-app.delete("/endereco/:id", (req, res) => {
-  endereco_controller.destroy(req.params.id);
+app.delete("/pedidos/:id", (req, res) => {
+  pedidos_controller.destroy(req.params.id);
   res.json();
 });

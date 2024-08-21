@@ -5,6 +5,9 @@ const endereco_controller = require("./controllers/endereco.js");
 const cliente_controller = require("./controllers/cliente.js");
 const entregador_controller = require("./controllers/entregador.js");
 const entrega_controller = require("./controllers/entrega.js");
+const vendedor_controller = require("./controllers/vendedor.js");
+const pagamento_controller = require("./controllers/pagamento.js");
+const pedidos_controller = require("./controllers/pedidos.js");
 const app = express();
 const port = 3000;
 
@@ -178,6 +181,93 @@ app.delete("/entrega/:id", (req, res) => {
   res.json();
 });
 //GERENCIAMENTO DE entrega
+//GERENCIAMENTO DE vendedor
+app.post("/vendedor", (req, res) => {
+  const vendedor = req.body;
+  const code = vendedor_controller.store(vendedor);
+  res.status(code).json();
+});
+
+app.get("/vendedor", (req, res) => {
+  const vendedor = vendedor_controller.index();
+  res.json(vendedor);
+});
+
+app.get("/vendedor/:id", (req, res) => {
+  const vendedor = vendedor_controller.show(req.params.id);
+  res.json(vendedor);
+});
+
+app.put("/vendedor/:id", (req, res) => {
+  const vendedor = req.body;
+  const code = vendedor_controller.update(req.params.id, vendedor);
+  res.status(code).json();
+});
+
+app.delete("/vendedor/:id", (req, res) => {
+  vendedor_controller.destroy(req.params.id);
+  res.json();
+});
+//GERENCIAMENTO DE vendedor
+//GERENCIAMENTO DE pagamento
+
+app.post("/pagamento", (req, res) => {
+  const pagamento = req.body;
+  const code = pagamento_controller.store(pagamento);
+  res.status(code).json();
+});
+
+app.get("/pagamento", (req, res) => {
+  const pagamento = pagamento_controller.index();
+  res.json(pagamento);
+});
+
+app.get("/pagamento/:id", (req, res) => {
+  const pagamento = pagamento_controller.show(req.params.id);
+  res.json(pagamento);
+});
+
+app.put("/pagamento/:id", (req, res) => {
+  const pagamento = req.body;
+  const code = pagamento_controller.update(req.params.id, pagamento);
+  res.status(code).json();
+});
+
+app.delete("/pagamento/:id", (req, res) => {
+  pagamento_controller.destroy(req.params.id);
+  res.json();
+});
+//GERENCIAMENTO DE pagamento
+//GERENCIAMENTO DE pedidos
+
+app.post("/pedidos", (req, res) => {
+  const pedidos = req.body;
+  const code = pedidos_controller.store(pedidos);
+  res.status(code).json();
+});
+
+app.get("/pedidos", (req, res) => {
+  const pedidos = pedidos_controller.index();
+  res.json(pedidos);
+});
+
+app.get("/pedidos/:id", (req, res) => {
+  const pedidos = pedidos_controller.show(req.params.id);
+  res.json(pedidos);
+});
+
+app.put("/pedidos/:id", (req, res) => {
+  const pedidos = req.body;
+  const code = pedidos_controller.update(req.params.id, pedidos);
+  res.status(code).json();
+});
+
+app.delete("/pedidos/:id", (req, res) => {
+  pedidos_controller.destroy(req.params.id);
+  res.json();
+});
+//GERENCIAMENTO DE pedidos
+
 app.listen(port, () => {
   console.log(`Sucesso na conexão ${port}`);
 });
