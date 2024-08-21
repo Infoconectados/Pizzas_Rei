@@ -6,16 +6,17 @@ const model = (pizza, id_pizza = nextId++) => {
   if (
     pizza.nome != undefined &&
     pizza.nome != "" &&
-    pizza.id_ingrediente != undefined &&
-    ingrediente_controller.show(pizza.id_ingrediente)
+    Array.isArray(pizza.id_ingredientes) &&
+    pizza.id_ingredientes.every(id => ingrediente_controller.show(id))
   ) {
     return {
       id_pizza,
-      id_ingrediente: pizza.id_ingrediente, // Armazena o id_pizza do naipe
+      id_ingredientes: pizza.id_ingredientes, // Armazena os IDs dos ingredientes como um array
       nome: pizza.nome,
     };
   }
 };
+
 const store = (body) => {
   const novo = model(body);
   if (novo) {
@@ -38,6 +39,7 @@ const update = (id_pizza, body) => {
   }
   return 400;
 };
+
 const destroy = (id_pizza) => {
   const index = db.findIndex((el) => el.id_pizza == id_pizza);
   if (index != -1) {
